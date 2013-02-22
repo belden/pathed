@@ -1,0 +1,15 @@
+App-pathed-*
+*.swp
+*.un~
+build/
+.build/
+cover_db/
+nytprof.*
+nytprof
+.DS_Store
+tags
+MYMETA.json
+MYMETA.yml
+Makefile
+blib
+pm_to_blib
