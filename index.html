@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="pathed : munge the Bash PATH environment variable" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>pathed</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/marcelgruenauer/pathed">View on GitHub</a>
+
+          <h1 id="project_title">pathed</h1>
+          <h2 id="project_tagline">munge the Bash PATH environment variable</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/marcelgruenauer/pathed/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/marcelgruenauer/pathed/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>NAME</h1>
+
+<p>App::pathed - munge the Bash PATH environment variable</p>
+
+<h1>SYNOPSIS</h1>
+
+<pre><code># PATH=$(pathed --unique --delete rbenv)
+# PATH=$(pathed --append /home/my/bin -a /some/other/bin)
+# PATH=$(pathed --prepend /home/my/bin -p /some/other/bin)
+# for i in $(pathed --split); do ...; done
+# pathed --check
+# pathed --man
+</code></pre>
+
+<h1>DESCRIPTION</h1>
+
+<p>The Bash <code>PATH</code> environment variable contains a colon-separated list of paths.
+<code>pathed</code> - "path editor" - can split the path, append, prepend or remove
+elements, remove duplicates and reassemble it.</p>
+
+<p>The result is then printed so you can assign it to the <code>PATH</code> variable. If
+<code>--split</code> is used, each path element is printed on a separate line, so you can
+iterate over them, for example.</p>
+
+<p>The path elements can also be checked with <code>--check</code> to make sure that the
+indicated directories exist and are readable.</p>
+
+<p>The following command-line options are supported:</p>
+
+<ul>
+<li>
+<p>--append, -a </p>
+
+<p>Appends the given path to the list of path elements. This option can be
+specified several times; the paths are appended in the given order.</p>
+</li>
+<li>
+<p>--prepend, -p </p>
+
+<p>Prepends the given path to the list of path elements. This option can be
+specified several times; the paths are prepended in the given order. For
+example:</p>
+
+<pre><code>pathed -p first -p second -p third
+</code></pre>
+
+<p>will result in <code>third:second:first:$PATH</code>.</p>
+</li>
+<li>
+<p>--delete, -d </p>
+
+<p>Deletes those path elements which contain the given substring. This option can
+be specified several times; the path elements are deleted in the given order.</p>
+
+<p>When options are mixed, <code>--append</code> is processed first, then <code>--prepend</code>, then
+<code>--delete</code>.</p>
+</li>
+<li>
+<p>--unique, -u</p>
+
+<p>Removes duplicate path elements.</p>
+</li>
+<li>
+<p>--split, -s</p>
+
+<p>Prints each path element on its own line. If this option is not specified, the
+path elements are printed on one line, joined by colons, like you would
+normally specify the <code>PATH</code> variable.</p>
+</li>
+<li>
+<p>--check, -c</p>
+
+<p>Checks whether each path element is a readable directory and prints warnings if
+necessary. Warnings are printed only once per path element, even if that
+element occurs several times in <code>PATH</code>.</p>
+
+<p>When <code>--check</code> is used, the path is not printed. <code>--check</code> and <code>--split</code> are
+mutually exclusive.</p>
+</li>
+<li>
+<p>--help, -h</p>
+
+<p>Prints the synopsis.</p>
+</li>
+<li>
+<p>man</p>
+
+<p>Prints the whole documentation.</p>
+</li>
+</ul><h1>WHY pathed?</h1>
+
+<p>The initial motivation for writing <code>pathed</code> came when I tried to install
+<code>vim</code> with <code>homebrew</code> while <code>rbenv</code> was active. <code>vim</code> wanted to be compiled
+with the system ruby, so I was looking for a quick way to remove <code>rbenv</code> from
+the <code>PATH</code>:</p>
+
+<pre><code>PATH=$(pathed -d rbenv) brew install vim
+</code></pre>
+
+<h1>AUTHORS</h1>
+
+<p>The following person is the authors of all the files provided in this
+distribution unless explicitly noted otherwise.</p>
+
+<p>Marcel Gruenauer <a href="mailto:marcel@cpan.org">marcel@cpan.org</a>, <a href="http://marcelgruenauer.com">http://marcelgruenauer.com</a></p>
+
+<h1>COPYRIGHT AND LICENSE</h1>
+
+<p>The following copyright notice applies to all the files provided in this
+distribution, including binary files, unless explicitly noted otherwise.</p>
+
+<p>This software is copyright (c) 2013 by Marcel Gruenauer.</p>
+
+<p>This is free software; you can redistribute it and/or modify it under the same
+terms as the Perl 5 programming language system itself.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">pathed maintained by <a href="https://github.com/marcelgruenauer">marcelgruenauer</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
