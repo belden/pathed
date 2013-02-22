@@ -29,6 +29,7 @@ if ( -d 'bin' ) {
     find(
       sub {
         return unless -f;
+        return if /^\..*(swp|un~)$/;
         my $found = $File::Find::name;
         # nothing to skip
         push @scripts, $found;
