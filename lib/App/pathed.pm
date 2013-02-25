@@ -46,7 +46,7 @@ sub run {
 # separate methods so it's easily testable
 sub process {
     my ($path, $opt) = @_;
-    my $separator = $opt->{sep} // $Config::Config{path_sep};
+    my $separator = defined $opt->{sep} ? $opt->{sep} : $Config::Config{path_sep};
     my @parts = split $separator => $path;
     if ($opt->{append}) {
         push @parts, @{ $opt->{append} };
